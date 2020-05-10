@@ -19,6 +19,7 @@ public class UserUtilis {
                 break;
             case "2":
                 System.out.println( newUser.showAllUsersFromService());
+                newMenu.showUser();
                 break;
             case "3":
                 newUser.updateUser();
