@@ -1,0 +1,46 @@
+INITIALIZARE PROIECT:
+
+vezi: https://www.youtube.com/watch?v=tgR-vBuLd0Y
+
+1. se va creea un template de proiect cu Spring Initializr:
+ https://start.spring.io/
+
+2. se inporta dependintele:
+- Spring Boot Devtools;
+- Spring Web;
+- MySqL Driver;
+- Spring Data JPA;
+
+3. se genereaza template-ul;
+4. se dezarhiveaza template-ul si se deschide in intellij;
+- pasii de mai sus se pot face si direct in intellij cu SpringInitializr;
+5.se configureaza in folderul resources in fisierul application.properties urmatoarele credentiale:
+
+spring.datasource.url=jdbc:mysql://localhost:3306/bugtracker
+spring.datasource.username=root
+spring.datasource.password=root
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+
+
+
+INITIALIZARE ANGULAR - frontend framework:
+
+1. se instaleaza node js - JavaScript runtime - v12.16.2 LTS (recommended for most users); - https://angular.io/guide/setup-local
+2. Pasi:
+- Step 1: Install the Angular CLI :  
+npm install -g @angular/cli (in cmd)
+- Step 2: Create a workspace and initial application
+ng new my-app (in cmd)
+- Step 3: Run the application
+cd my-app
+ng serve --open
+
+Obligatoriu este Step1;
+
+
+
+
+
+
