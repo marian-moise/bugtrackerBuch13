@@ -49,8 +49,12 @@ public class IssueUtilis {
             MenuPrintUtilis menu = new MenuPrintUtilis();
             menu.showIssues();
         } else {
-            String title = scanner.next();
-            String identifier = scanner.next();
+            //!!!!!!!!!!!!!!!!!!
+            scanner.nextLine();
+            System.out.println("issue title");
+            String title = scanner.nextLine();
+            System.out.println("issue description");
+            String identifier = scanner.nextLine();
             createIssueFromService(id, title, identifier);
             MenuPrintUtilis newMenu = new MenuPrintUtilis();
             newMenu.showIssues();

@@ -3,6 +3,7 @@ package com.sdabuch13.bugtracker.interface1;
 import com.sdabuch13.bugtracker.model.User;
 import com.sdabuch13.bugtracker.service.UserService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class UserUtilis {
@@ -16,9 +17,9 @@ public class UserUtilis {
             case "1":
                 newUser.createUser();
                 break;
-//            case "2":
-//                newUser.showUser();
-//                break;
+            case "2":
+                System.out.println( newUser.showAllUsersFromService());
+                break;
             case "3":
                 newUser.updateUser();
                 break;
@@ -30,6 +31,12 @@ public class UserUtilis {
             default:
                 System.out.println("Invalid input!");
         }
+    }
+
+
+    public List<User> showAllUsersFromService() {
+        UserService us = new UserService();
+        return us.findAllUsers();
     }
 
     public void createUser() {

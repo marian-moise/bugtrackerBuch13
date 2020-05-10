@@ -1,13 +1,13 @@
 package com.sdabuch13.bugtracker.service;
 
 import com.sdabuch13.bugtracker.model.HibernateUtil;
-import com.sdabuch13.bugtracker.model.Status;
 import com.sdabuch13.bugtracker.model.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import javax.persistence.NoResultException;
+import java.util.List;
 
 public class UserService {
 
@@ -42,6 +42,15 @@ public class UserService {
             session.close();
         }
         return user;
+    }
+
+    public List<User> findAllUsers() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String queryString = "select u from User u";
+        Query<User> query = session.createQuery(queryString, User.class);
+        List<User> list = query.list();
+        session.close();
+        return list;
     }
 
 
