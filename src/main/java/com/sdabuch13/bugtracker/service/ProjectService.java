@@ -7,14 +7,15 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import javax.persistence.NoResultException;
+import java.util.List;
 
 public class ProjectService {
 
 
-    public Project createProject(String projectName, String projectIdentifier) {
+    public Project createProject(String projectName, String projectIdentifier, String description) {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Project myNewProject = new Project(projectName, projectIdentifier);
+        Project myNewProject = new Project(projectName, projectIdentifier, description);
         Transaction t = session.beginTransaction();
         session.save(myNewProject);
         t.commit();
@@ -31,6 +32,15 @@ public class ProjectService {
         Project foundProject = session.find(Project.class, id);
         session.close();
         return foundProject;
+    }
+
+    public List<Project> showAllProjects() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String queryString = "select p from Project p";
+        Query<Project> query = session.createQuery(queryString, Project.class);
+        List<Project> list = query.list();
+        session.close();
+        return list;
     }
 
 

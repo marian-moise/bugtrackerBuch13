@@ -26,6 +26,7 @@ public class User {
     @Column(name = "userName")
     public String userName;
 
+
     @Override
     public String toString() {
         return "User{" +

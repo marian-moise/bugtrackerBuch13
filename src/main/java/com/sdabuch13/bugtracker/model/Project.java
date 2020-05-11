@@ -14,6 +14,12 @@ public class Project {
         this.identifier = identifier;
     }
 
+    public Project(String name, String identifier, String description) {
+        this.name = name;
+        this.identifier = identifier;
+        this.description = description;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "projectId")

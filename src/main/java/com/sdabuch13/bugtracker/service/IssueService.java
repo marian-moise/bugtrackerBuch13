@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import javax.persistence.NoResultException;
+import java.util.List;
 
 public class IssueService {
 
@@ -30,6 +31,25 @@ public class IssueService {
         session.save(issue);
         t.commit();
         session.close();
+    }
+
+    public List<Issue> showAllIssues() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String queryString = "select i from Issue i";
+        Query<Issue> query = session.createQuery(queryString, Issue.class);
+        List<Issue> list = query.list();
+        session.close();
+        return list;
+    }
+
+    public List<Issue> showAllIssuesByProject(Project project) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String queryString = "select i from Issue i where i.projectId = :project";
+        Query<Issue> query = session.createQuery(queryString, Issue.class);
+        query.setParameter("project", project);
+        List<Issue> list = query.list();
+        session.close();
+        return list;
     }
 
 
@@ -76,11 +96,11 @@ public class IssueService {
     }
 
 
-    public void deleteIssue(int id) {
+    public void deleteIssue(int issueId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Query q = session.createQuery("delete from Issue i where issueId = :id ");
-        q.setParameter("id", id);
+        Query q = session.createQuery("delete from Issue i where issueId = :issueId ");
+        q.setParameter("issueId", issueId);
         q.executeUpdate();
         transaction.commit();
         session.close();

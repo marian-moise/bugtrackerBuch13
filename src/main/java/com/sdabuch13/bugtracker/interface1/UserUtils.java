@@ -6,12 +6,12 @@ import com.sdabuch13.bugtracker.service.UserService;
 import java.util.List;
 import java.util.Scanner;
 
-public class UserUtilis {
+public class UserUtils {
 
 
     public void userSelection(String input) {
-        UserUtilis newUser = new UserUtilis();
-        MenuPrintUtilis newMenu = new MenuPrintUtilis();
+        UserUtils newUser = new UserUtils();
+        MenuPrintUtils newMenu = new MenuPrintUtils();
 
         switch (input) {
             case "1":
@@ -27,7 +27,7 @@ public class UserUtilis {
             case "4":
                 newUser.deleteUser();
                 break;
-            case "5":
+            case "0":
                 newMenu.showMainMenu();
             default:
                 System.out.println("Invalid input!");
@@ -45,11 +45,11 @@ public class UserUtilis {
         System.out.println("Introduce userName or press 0 to exit: ");
         String input = scanner.next();
         if (input.equalsIgnoreCase("0")) {
-            MenuPrintUtilis menu = new MenuPrintUtilis();
+            MenuPrintUtils menu = new MenuPrintUtils();
             menu.showUser();
         } else {
             createUserFromService(input);
-            MenuPrintUtilis newMenu = new MenuPrintUtilis();
+            MenuPrintUtils newMenu = new MenuPrintUtils();
             newMenu.showUser();
         }
     }
@@ -65,12 +65,13 @@ public class UserUtilis {
         System.out.println("Introduce the userId you want to update and new userName or press 0 to exit: ");
         int userId = scanner.nextInt();
         if (userId == 0) {
-            MenuPrintUtilis menu = new MenuPrintUtilis();
+            MenuPrintUtils menu = new MenuPrintUtils();
             menu.showUser();
         } else {
+            System.out.println("Introduce the userName you want to update: ");
             String username = scanner.next();
             updateUserFromService(userId, username);
-            MenuPrintUtilis newMenu = new MenuPrintUtilis();
+            MenuPrintUtils newMenu = new MenuPrintUtils();
             newMenu.showUser();
         }
     }
@@ -85,11 +86,11 @@ public class UserUtilis {
         System.out.println("Introduce userId to be deleted or press 0 to exit: ");
         int exit = scanner.nextInt();
         if (exit == 0) {
-            MenuPrintUtilis menu = new MenuPrintUtilis();
+            MenuPrintUtils menu = new MenuPrintUtils();
             menu.showUser();
         } else {
             deleteUserFromservice(exit);
-            MenuPrintUtilis newMenu = new MenuPrintUtilis();
+            MenuPrintUtils newMenu = new MenuPrintUtils();
             newMenu.showUser();
         }
     }

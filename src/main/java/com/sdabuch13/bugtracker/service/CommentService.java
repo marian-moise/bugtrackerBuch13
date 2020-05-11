@@ -2,11 +2,14 @@ package com.sdabuch13.bugtracker.service;
 
 import com.sdabuch13.bugtracker.model.Comment;
 import com.sdabuch13.bugtracker.model.HibernateUtil;
+import com.sdabuch13.bugtracker.model.Issue;
+import com.sdabuch13.bugtracker.model.Project;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.Date;
+import java.util.List;
 
 public class CommentService {
 
@@ -30,6 +33,16 @@ public class CommentService {
         Comment foundComment = session.find(Comment.class, id);
         session.close();
         return foundComment;
+    }
+
+    public List<Comment> showAllCommentsByIssueId(Issue issue) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String queryString = "select c from Comment c where c.issueId = :issue";
+        Query<Comment> query = session.createQuery(queryString, Comment.class);
+        query.setParameter("issue", issue);
+        List<Comment> list = query.list();
+        session.close();
+        return list;
     }
 
 

@@ -6,50 +6,47 @@ public class InterfaceRunner {
     public static void main(String[] args) {
 
 
-/**
- * LA DESCRIPTION NU ACCEPTA STRINGURI CU SPATII - WHY???????
- */
 
-        MenuPrintUtilis mainMenu = new MenuPrintUtilis();
+        MenuPrintUtils mainMenu = new MenuPrintUtils();
         mainMenu.showMainMenu();
 
         while (true) {
 
             Scanner scanner = new Scanner(System.in);
             String input = scanner.next();
-            MenuPrintUtilis newMenu = new MenuPrintUtilis();
+            MenuPrintUtils newMenu = new MenuPrintUtils();
 
             if (input.equalsIgnoreCase("1")) {
                 newMenu.showUser();
                 while (true) {
                     String input2 = scanner.next();
-                    if (input2.equalsIgnoreCase("5")){
+                    if (input2.equalsIgnoreCase("0")){
                         newMenu.showMainMenu();
                         break;
                     }
-                    UserUtilis newUser = new UserUtilis();
+                    UserUtils newUser = new UserUtils();
                     newUser.userSelection(input2);
                 }
             } else if (input.equalsIgnoreCase("2")) {
                 newMenu.showProjects();
                 while (true) {
                     String input3 = scanner.next();
-                    if (input3.equalsIgnoreCase("7")) {
+                    if (input3.equalsIgnoreCase("0")) {
                         newMenu.showMainMenu();
                         break;
                     }
-                    ProjectUtilis newProject = new ProjectUtilis();
+                    ProjectUtils newProject = new ProjectUtils();
                     newProject.projectSelection(input3);
                 }
             } else if (input.equalsIgnoreCase("3")) {
                 newMenu.showIssues();
                 while (true) {
                     String input4 = scanner.next();
-                    if (input4.equalsIgnoreCase("7")){
+                    if (input4.equalsIgnoreCase("0")){
                         newMenu.showMainMenu();
                         break;
                     }
-                    IssueUtilis newIssue = new IssueUtilis();
+                    IssueUtils newIssue = new IssueUtils();
                     newIssue.issueSelection(input4);
                 }
             } else if (input.equalsIgnoreCase("0")) {

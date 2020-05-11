@@ -5,20 +5,21 @@ import com.sdabuch13.bugtracker.service.ProjectService;
 
 import java.util.Scanner;
 
-public class ProjectUtilis {
+public class ProjectUtils {
 
     public void projectSelection(String input) {
 
-        ProjectUtilis newProject = new ProjectUtilis();
-        MenuPrintUtilis newMenu = new MenuPrintUtilis();
+        ProjectUtils newProject = new ProjectUtils();
+        MenuPrintUtils newMenu = new MenuPrintUtils();
 
         switch (input) {
             case "1":
                 newProject.createProject();
                 break;
-//            case "2":
-//                newUser.showUser();
-//                break;
+            case "2":
+                newProject.showAllProjectsFromService();
+                newMenu.showProjects();
+                break;
             case "3":
                 newProject.updateProject();
                 break;
@@ -31,7 +32,7 @@ public class ProjectUtilis {
 //            case "6":
 //                newProject.showMainMenu();
 //                break;
-            case "7":
+            case "0":
                 newMenu.showUser();
             default:
                 System.out.println("Invalid input!");
@@ -41,24 +42,33 @@ public class ProjectUtilis {
 
     public void createProject() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Introduce projectName and projectIdentifier or press 0 to exit : ");
+        System.out.println("Introduce projectName and projectIdentifier or press 0 to exit: ");
         String name = scanner.next();
 
         if (name.equalsIgnoreCase("0")) {
-            MenuPrintUtilis menu = new MenuPrintUtilis();
+            MenuPrintUtils menu = new MenuPrintUtils();
             menu.showProjects();
         } else {
-            String identifier = scanner.next();
-            createProjectFromService(name, identifier);
-            MenuPrintUtilis newMenu = new MenuPrintUtilis();
+            scanner.nextLine();
+            System.out.println("Introduce projectIdentifier: ");
+            String identifier = scanner.nextLine();
+            System.out.println("Introduce projectDescription: ");
+            String description = scanner.nextLine();
+            createProjectFromService(name, identifier, description);
+            MenuPrintUtils newMenu = new MenuPrintUtils();
             newMenu.showProjects();
         }
     }
 
-    public Project createProjectFromService(String name, String identifier) {
+    public Project createProjectFromService(String name, String identifier, String description) {
         ProjectService ps = new ProjectService();
-        Project newProject = ps.createProject(name, identifier);
+        Project newProject = ps.createProject(name, identifier, description);
         return newProject;
+    }
+
+    public void showAllProjectsFromService() {
+        ProjectService ps = new ProjectService();
+        System.out.println(ps.showAllProjects());
     }
 
     public void deleteProject() {
@@ -66,11 +76,11 @@ public class ProjectUtilis {
         System.out.println("Introduce projectId to be deleted or press 0 to exit: ");
         int id = scanner.nextInt();
         if (id == 0) {
-            MenuPrintUtilis menu = new MenuPrintUtilis();
+            MenuPrintUtils menu = new MenuPrintUtils();
             menu.showProjects();
         } else {
             deleteProjectFRomService(id);
-            MenuPrintUtilis newMenu = new MenuPrintUtilis();
+            MenuPrintUtils newMenu = new MenuPrintUtils();
             newMenu.showProjects();
         }
     }
@@ -87,14 +97,18 @@ public class ProjectUtilis {
         String projectName = scanner.next();
 
         if (projectName.equalsIgnoreCase("0")) {
-            MenuPrintUtilis menu = new MenuPrintUtilis();
+            MenuPrintUtils menu = new MenuPrintUtils();
             menu.showProjects();
         } else {
-            String newProjectIdentifier = scanner.next();
-            String newProjectDescription = scanner.next();
+            scanner.nextLine();
+            System.out.println("Introduce new projectIdentifier: ");
+            String newProjectIdentifier = scanner.nextLine();
+            System.out.println("Introduce new projectDescription: ");
+            String newProjectDescription = scanner.nextLine();
+            System.out.println("Introduce new projectName: ");
             String newName = scanner.next();
             updateProjectFromService(projectName, newProjectIdentifier, newProjectDescription, newName);
-            MenuPrintUtilis newMenu = new MenuPrintUtilis();
+            MenuPrintUtils newMenu = new MenuPrintUtils();
             newMenu.showProjects();
         }
     }
