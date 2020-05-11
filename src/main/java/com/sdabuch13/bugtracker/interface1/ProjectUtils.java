@@ -22,6 +22,7 @@ public class ProjectUtils {
                 break;
             case "3":
                 newProject.updateProject();
+                newMenu.showProjects();
                 break;
             case "4":
                 newProject.deleteProject();

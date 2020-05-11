@@ -68,7 +68,7 @@ public class UserUtils {
             MenuPrintUtils menu = new MenuPrintUtils();
             menu.showUser();
         } else {
-            System.out.println("Introduce the userName you want to update: ");
+            System.out.println("Introduce the newUsername: ");
             String username = scanner.next();
             updateUserFromService(userId, username);
             MenuPrintUtils newMenu = new MenuPrintUtils();
